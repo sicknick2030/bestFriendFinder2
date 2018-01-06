@@ -91,6 +91,7 @@ function getPets(event) {
 	})
 }
 
+$(document).on("click", "#zipSubmit", getPets);
 $(document).on("change",".target",getPets);
 
 function addFavorite() {
