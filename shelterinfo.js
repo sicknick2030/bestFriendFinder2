@@ -25,7 +25,7 @@ function getShelterInfo(shelterId,shelter) {
 				"$t" in shelterInfo.state && "$t" in shelterInfo.zip) {
 				var address = shelterInfo.address1.$t + ", " + shelterInfo.city.$t +
 								", " + shelterInfo.state.$t + " " + shelterInfo.zip.$t;
-				geocodeAddress(address,geocoder,map);
+				geocodeAddress(shelter,address,geocoder,map);
 			}
 			else { // otherwise, log the shelter to console
 				if (shelterInfo != undefined) {
@@ -43,7 +43,6 @@ function addShelterInfo(shelterList) {
 		getShelterInfo(shelter.shelterId,shelter);
 	});
 
-	// refreshMap(map,shelterList);
 	return shelterList;
 
 }
