@@ -56,11 +56,14 @@ function getPets(event) {
 			sex: petGender,
 			output: "basic",
 			format: "json",
-			count: 5,
+			count: 10,
 		},
 		success: function(petApiData) {
 			var pets = petApiData.petfinder.pets.pet;
-			shelterList = transform(pets);	
+			shelterList = transform(pets);
+			addShelterInfo(shelterList);
+			console.log("shelter list: ",shelterList);
+
 			console.log("pets", pets);
 
 			for (var i = 0; i < pets.length; i++) {
@@ -89,6 +92,55 @@ function getPets(event) {
 			}
 		}
 	})
+}
+
+// function to get shelter info for a shelter and add it to shelter object
+function getShelterInfo(shelterId,shelter) {
+
+	var queryURL = "https://api.petfinder.com/shelter.get";
+
+	$.ajax({
+		url: queryURL,
+		jsonp: "callback",
+		dataType: "jsonp",
+		data: {
+			key: PetFinderAPIKey,
+			id: shelterId,
+			format: "json",
+		},
+		success: function(response) {
+			
+			// pull shelter information object from API response
+			var shelterInfo = response.petfinder.shelter;
+
+			// add shelter information to shelter
+			shelter["shelterInfo"] = shelterInfo;
+
+			// if full shelter address exists, then geocode it and add it to map
+			if ("$t" in shelterInfo.address1 && "$t" in shelterInfo.city &&
+				"$t" in shelterInfo.state && "$t" in shelterInfo.zip) {
+				var address = shelterInfo.address1.$t + ", " + shelterInfo.city.$t +
+								", " + shelterInfo.state.$t + " " + shelterInfo.zip.$t;
+				geocodeAddress(address,geocoder,map);
+			}
+			else { // otherwise, log the shelter to console
+				console.log(shelterInfo.name.$t);
+			}
+			// refreshMap(map,shelter["shelterInfo"]);
+		}
+	});
+};
+
+// adds shelter info to each shelter in list
+function addShelterInfo(shelterList) {
+
+	shelterList.forEach(function(shelter) {
+		getShelterInfo(shelter.shelterId,shelter);
+	});
+
+	// refreshMap(map,shelterList);
+	return shelterList;
+
 }
 
 $(document).on("click", "#zipSubmit", getPets);
