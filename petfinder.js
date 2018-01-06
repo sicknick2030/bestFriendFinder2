@@ -56,7 +56,7 @@ function getPets(event) {
 			sex: petGender,
 			output: "basic",
 			format: "json",
-			count: 50,
+			count: 5,
 		},
 		success: function(petApiData) {
 			var pets = petApiData.petfinder.pets.pet;
@@ -127,16 +127,17 @@ function getShelterInfo(shelterId,shelter) {
 			shelter["shelterInfo"] = shelterInfo;
 
 			// if full shelter address exists, then geocode it and add it to map
-			if ("$t" in shelterInfo.address1 && "$t" in shelterInfo.city &&
+			if (shelterInfo != undefined && "$t" in shelterInfo.address1 && "$t" in shelterInfo.city &&
 				"$t" in shelterInfo.state && "$t" in shelterInfo.zip) {
 				var address = shelterInfo.address1.$t + ", " + shelterInfo.city.$t +
 								", " + shelterInfo.state.$t + " " + shelterInfo.zip.$t;
 				geocodeAddress(address,geocoder,map);
 			}
 			else { // otherwise, log the shelter to console
-				console.log(shelterInfo.name.$t);
+				if (shelterInfo != undefined) {
+					console.log(shelterInfo.name.$t);
+				}
 			}
-			// refreshMap(map,shelter["shelterInfo"]);
 		}
 	});
 };
