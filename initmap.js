@@ -22,11 +22,6 @@ function initMap() {
 
 		// center the map at the zipcode provided by the user
 		geocodeZip(currentZip,geocoder,map);
-
-		// create the shelterList, which adds markers to map
-		var shelterList = addShelterInfo(transform(petList));
-		console.log(shelterList);
-
 	});
 
 }
