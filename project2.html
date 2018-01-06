@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Project</title>
+  <!-- <link rel="stylesheet" type="text/css" href="reset.css"> -->
+  <link rel="stylesheet" type="text/css" href="reset.css">
+
+  <link href="https://fonts.googleapis.com/css?family=Old+Standard+TT" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Aladin" rel="stylesheet">
+    
+  <link rel="stylesheet" type="text/css" href="project.css">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+</head>
+<body>
+  
+  <!-- <div id="whole"> -->
+
+    <header id="header">
+      <h1 id="bestFriend">Best Friend Finder</h1>
+      <!-- <h1 id="finder">Finder</h1> -->
+    </header>
+
+    <div id="input">
+
+      <form id="local">
+        <div id="locationSearch">
+          <label for="current-location">Current Location?</label>
+        </div>
+        <div id="locationInput">
+          <input class="form-control" id="zipCode" type="text" maxlength="5" placeholder="Zip Code">
+        </div>
+      </form>
+      
+      <form id="search">
+        <div id="dropdown">
+          
+          
+          <select id="petType" placeholder="Animal Type" class="target">
+            <option disabled selected>Animal Type</option>
+            <option value ="cat">Cat</option>
+            <option value="dog">Dog</option>
+            <option value="horse">Horse</option>
+          </select>
+        
+          
+          <select id="petAge" class="target">
+             <!-- <option disabled selected>Pet Age</option> -->
+              <option value=""></option>
+              <option value="Baby">Baby</option>
+              <option value="Young">Young</option>
+              <option value="Adult">Adult</option>
+              <option value="Senior">Senior</option>
+          </select>
+
+          
+          <select id="petSize" class="target">
+           <!-- <option disabled selected>Pet Size</option> -->
+            <option value=""></option>
+            <option value="S">Small</option>
+            <option value="M">Medium</option>
+            <option value="L">Large</option>
+            <option value="XL">Extra-large</option>
+          </select>
+    
+          
+          <select id="petGender" class="target">
+            <!-- <option disabled selected>Pet Gender</option> -->
+            <option value=""></option>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+          </select>
+
+          <!-- <button id="petFinderSubmit">Submit</button> -->
+        
+        </div> 
+      </form>
+    </div>
+  <div id="whole"> 
+    <div id="whiteBox">
+      <div class="output">
+          <div id="map"></div>
+          <div id="results"></div>
+      </div>
+    </div>
+  </div>
+    <footer id="footer">
+        <p>Copryright 2017</p>
+    </footer>
+
+  <script type="text/javascript" src="petfinder.js"></script>
+</body>
+</html>
