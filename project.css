@@ -247,3 +247,7 @@ img.animal{
     padding: 1.5%;
     background-color: aqua;
 }
+
+#search {
+    display: none;
+}

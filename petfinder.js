@@ -14,6 +14,7 @@
 // }
 
 // initializes firebase
+
 var config = {
     apiKey: "AIzaSyBj0VNeS_U8PR-NDxZNYUnfb67Ca76FEzw",
     authDomain: "bestfriendfinder-26231.firebaseapp.com",
@@ -104,8 +105,14 @@ function getPets(event) {
 	})
 }
 
+function showDropdowns () {
+	$("#search").css("display", "block");
+}
+
 $(document).on("click", "#zipSubmit", getPets);
 $(document).on("change",".target",getPets);
+
+$(document).on("click","#zipSubmit",showDropdowns);
 
 function addFavorite() {
 	var animalID = this.value;
