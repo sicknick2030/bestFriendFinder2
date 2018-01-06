@@ -33,6 +33,7 @@ var PetFinderAPIKey = "156a1b8fa2233c99240e24d804ef4754";
 
 function getPets(event) {
 	event.preventDefault();
+	$("#results").empty();
 
 	var petType = $("#petType").val().trim();
 	var zipCode = $("#zipCode").val().trim();
@@ -59,6 +60,7 @@ function getPets(event) {
 		},
 		success: function(petApiData) {
 			var pets = petApiData.petfinder.pets.pet;
+			shelterList = transform(pets);	
 			console.log("pets", pets);
 
 			for (var i = 0; i < pets.length; i++) {

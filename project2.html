@@ -28,7 +28,8 @@
           <label for="current-location">Current Location?</label>
         </div>
         <div id="locationInput">
-          <input class="form-control" id="zipCode" type="text" maxlength="5" placeholder="Zip Code">
+          <input class="form-control target" id="zipCode" type="text" maxlength="5" placeholder="Zip Code">
+          <button id="zipSubmit">Submit</button>
         </div>
       </form>
       
@@ -37,7 +38,8 @@
           
           
           <select id="petType" placeholder="Animal Type" class="target">
-            <option disabled selected>Animal Type</option>
+            <option value=""></option>
+            <!-- <option disabled selected>Animal Type</option> -->
             <option value ="cat">Cat</option>
             <option value="dog">Dog</option>
             <option value="horse">Horse</option>
@@ -89,5 +91,6 @@
     </footer>
 
   <script type="text/javascript" src="petfinder.js"></script>
+  <script type="text/javascript" src="transform.js"></script>
 </body>
 </html>
