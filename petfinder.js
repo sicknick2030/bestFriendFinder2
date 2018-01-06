@@ -60,7 +60,10 @@ function getPets(event) {
 		},
 		success: function(petApiData) {
 			var pets = petApiData.petfinder.pets.pet;
-			shelterList = transform(pets);	
+			shelterList = transform(pets);
+			addShelterInfo(shelterList);
+			console.log("shelter list: ",shelterList);
+
 			console.log("pets", pets);
 
 			for (var i = 0; i < pets.length; i++) {
@@ -70,8 +73,18 @@ function getPets(event) {
 				var animalNameDiv = $("<h2>").text(animalName);
 				animalDiv.append(animalNameDiv);
 
-				var animalImageURL = pets[i].media.photos.photo[2].$t;
-				var animalImage = $("<img class='animal'>").attr("src", animalImageURL);
+				var animalImageURL = '';
+				var animalImage = '';
+
+				if ("photos" in pets[i].media && typeof pets[i].media.photos.photo[2].$t != "undefined") {
+					animalImageURL = pets[i].media.photos.photo[2].$t;
+					animalImage = $("<img class='animal'>").attr("src", animalImageURL);
+				} else {
+					animalImage = $("<img class='animal'>").attr("src", "https://writeandrescue.files.wordpress.com/2014/06/oops-cat1.jpg?w=620");
+				}
+
+				// var animalImageURL = pets[i].media.photos.photo[2].$t;
+				// var animalImage = $("<img class='animal'>").attr("src", animalImageURL);
 				animalDiv.append(animalImage);
 
 				// var animalDescription = pets[i].description.$t;
@@ -91,6 +104,7 @@ function getPets(event) {
 	})
 }
 
+$(document).on("click", "#zipSubmit", getPets);
 $(document).on("change",".target",getPets);
 
 function addFavorite() {
