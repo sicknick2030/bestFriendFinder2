@@ -1,5 +1,4 @@
-// function to return latitude and longitude for a zip code
-
+// returns latitude and longitude for a zip code
 function geocodeZip(zipcode,geocoder,map) {
 
 	geocoder.geocode( {componentRestrictions: {
@@ -15,7 +14,8 @@ function geocodeZip(zipcode,geocoder,map) {
 
 }
 
-function geocodeAddress(address,geocoder,map) {
+// adds shelter address to the map
+function geocodeAddress(shelter,address,geocoder,map) {
 
 	geocoder.geocode( 
 		{address: address},
@@ -24,6 +24,8 @@ function geocodeAddress(address,geocoder,map) {
 	    		var marker = new google.maps.Marker({
 	      			map: map,
 	      			position: results[0].geometry.location,
+	      			label: shelter.pets.length.toString(),
+	      			title: shelter.shelterInfo.name.$t,
 	    		});
 			}
 			else {
@@ -32,3 +34,4 @@ function geocodeAddress(address,geocoder,map) {
 		});
 
 }
+
