@@ -24,6 +24,7 @@ body {
     height: 45%;
     background-color: #da9d9d1f;
     padding: 0% 10%;
+    display: none;
 }
 
 #header {

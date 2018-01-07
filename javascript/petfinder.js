@@ -29,6 +29,7 @@ var dbFav = firebase.database().ref("/favorites");
 
 function showDropdowns () {
 	$("#search").css("display","block");
+	$("#whole").css("display","block");
 }
 
 console.log("wow!");
