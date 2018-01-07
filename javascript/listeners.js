@@ -10,3 +10,5 @@ $(document).on("change",".target",getPets);
 
 // when pet is favorited
 $(document).on("click",".addFavorite",addFavorite);
+
+$(document).on("click","#zipSubmit",showDropdowns);

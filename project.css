@@ -135,6 +135,7 @@ body {
     text-align: center;
     float: right;
     margin: 0% 0% 0% 51%;
+    display: none;
 }
 
 #dropdown {

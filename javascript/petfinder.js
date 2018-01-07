@@ -27,6 +27,10 @@ firebase.initializeApp(config);
 var db = firebase.database().ref();
 var dbFav = firebase.database().ref("/favorites");
 
+function showDropdowns () {
+	$("#search").css("display","block");
+}
+
 console.log("wow");
 
 var PetFinderAPIKey = "156a1b8fa2233c99240e24d804ef4754"; 
@@ -173,47 +177,47 @@ dbFav.on("child_added", function(snapshot) {
 
 // helper functions below
 
-function getBreeds() {
-	console.log("getBreeds");
-	var queryURL = "https://api.petfinder.com/breed.list";
-	var petType = $("#petType").val().trim();
+// function getBreeds() {
+// 	console.log("getBreeds");
+// 	var queryURL = "https://api.petfinder.com/breed.list";
+// 	var petType = $("#petType").val().trim();
 
-	$.ajax({
-		url: queryURL,
-		jsonp: "callback",
-		dataType: "jsonp",
-		data: {
-			key: PetFinderAPIKey,
-			animal: petType,
-			output: "basic",
-			format: "json",
-		},
-		success: function(breedResponse) {
-			console.log(breedResponse.petfinder.breeds.breed);
-		}
-	})
-}
+// 	$.ajax({
+// 		url: queryURL,
+// 		jsonp: "callback",
+// 		dataType: "jsonp",
+// 		data: {
+// 			key: PetFinderAPIKey,
+// 			animal: petType,
+// 			output: "basic",
+// 			format: "json",
+// 		},
+// 		success: function(breedResponse) {
+// 			console.log(breedResponse.petfinder.breeds.breed);
+// 		}
+// 	})
+// }
 
-$(document).on("click","#getBreedList", getBreeds);
+// $(document).on("click","#getBreedList", getBreeds);
 
-function showShelter()  {
-	var queryURL = "https://api.petfinder.com/shelter.get";
+// function showShelter()  {
+// 	var queryURL = "https://api.petfinder.com/shelter.get";
 	
-	$.ajax({
-		url: queryURL,
-		jsonp: "callback",
-		dataType: "jsonp",
-		data: {
-			key: PetFinderAPIKey,
-			id: "CA827",
-			output: "basic",
-			format: "json",
-		},
-		success: function(shelterResponse) {
-			// console.log(shelterResponse);
-		}
-	})
-}
+// 	$.ajax({
+// 		url: queryURL,
+// 		jsonp: "callback",
+// 		dataType: "jsonp",
+// 		data: {
+// 			key: PetFinderAPIKey,
+// 			id: "CA827",
+// 			output: "basic",
+// 			format: "json",
+// 		},
+// 		success: function(shelterResponse) {
+// 			// console.log(shelterResponse);
+// 		}
+// 	})
+// }
 
-$(document).on("click","#getShelters",showShelter);
+// $(document).on("click","#getShelters",showShelter);
 
