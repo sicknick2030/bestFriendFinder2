@@ -18,6 +18,4 @@ function initMap() {
 		geocodeZip(currentZip,geocoder,map);
 
 }
-
-
-function 
+ 

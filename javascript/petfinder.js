@@ -126,6 +126,8 @@ function displayPets(pets,shelterId) {
 
 function populateModal() {
 	var animalID = this.id;
+	console.log(this);
+	console.log(animalID, "animalID");
 
 	var queryURL = "https://api.petfinder.com/pet.get";
 	
@@ -186,6 +188,7 @@ function closeModal() {
 
 function addFavorite() {
 	var animalID = this.value;
+	console.log(this);
 
 	var queryURL = "https://api.petfinder.com/pet.get";
 	

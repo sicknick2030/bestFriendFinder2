@@ -12,12 +12,14 @@ $(document).on("change",".target",getPets);
 // when an animal is clicked
 $(document).on("click",".animal", function(event) {
 	event.preventDefault();
-	populateModal(event);
-	showModal(event);
+	// populateModal();
+	showModal();
 });
 
 // when pet is favorited
 $(document).on("click",".addFavorite",addFavorite);
+
+$(document).on("click",".animal",populateModal);
 
 // when modal is closed
 $(document).on("click",".close",closeModal);
