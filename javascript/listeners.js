@@ -7,12 +7,14 @@ $(document).on("click","#zipSubmit",function(event) {
 });
 
 // when any of the pet search dropdowns are changed
-$(document).on("change",".target",getPets);
+$(document).on("change",".target",function(event)  {
+	removeMarkers();
+	getPets(event);
+});
 
 // when an animal is clicked
 $(document).on("click",".animal", function(event) {
 	event.preventDefault();
-	// populateModal();
 	showModal();
 });
 

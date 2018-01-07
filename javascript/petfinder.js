@@ -167,6 +167,15 @@ function populateModal() {
 				animalImage = $("<img class='animal'>").attr("src", "https://writeandrescue.files.wordpress.com/2014/06/oops-cat1.jpg?w=620");
 			}
 
+			var animalURL = "https://www.petfinder.com/petdetail/" + animalID;
+			// var URLButton = $("<button class='goToPetFinder' value='" + animalID + "'>").text("Go to PetFinder");
+			var PFLink = $("<button>").text("Go to PetFinder");
+			PFLink.html("<a href='" + animalURL + "'>Hi</a>");
+			// PFLink.html("Go to PetFinder");
+			console.log(animalURL,"animalURL");
+			console.log(PFLink,"PFLink");
+			animalDiv.append(PFLink);
+
 			animalDiv.append(animalImage);
 			
 			var favoriteButton = $("<button class='addFavorite' value='" + animalID + "'>").text("Favorite");
