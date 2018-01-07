@@ -3,17 +3,21 @@ $(document).on("click","#zipSubmit",function(event) {
 	event.preventDefault();
 	getPets(event);
 	initMap();
+	showDropdowns(event);
 });
 
 // when any of the pet search dropdowns are changed
 $(document).on("change",".target",getPets);
 
+// when an animal is clicked
+$(document).on("click",".animal", function(event) {
+	event.preventDefault();
+	populateModal(event);
+	showModal(event);
+});
+
 // when pet is favorited
 $(document).on("click",".addFavorite",addFavorite);
 
-$(document).on("click","#zipSubmit",showDropdowns);
-
-$(document).on("click",".animal",populateModal);
-$(document).on("click",".animal",showModal);
-
+// when modal is closed
 $(document).on("click",".close",closeModal);
