@@ -13,6 +13,7 @@ $(document).on("click",".addFavorite",addFavorite);
 
 $(document).on("click","#zipSubmit",showDropdowns);
 
+$(document).on("click",".animal",populateModal);
 $(document).on("click",".animal",showModal);
 
 $(document).on("click",".close",closeModal);

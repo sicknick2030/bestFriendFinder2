@@ -222,7 +222,7 @@ body {
 
 }
 
-.animalDiv {
+.animalDiv .model-content {
 	text-align: center;
     color: black;
     border: 1px solid;
@@ -264,7 +264,7 @@ img.animal{
 }
 
 .modal-content {
-    background-color: red;
+    background-color: gray;
     margin: auto;
     padding: 20px;
     border: 1px solid #888;

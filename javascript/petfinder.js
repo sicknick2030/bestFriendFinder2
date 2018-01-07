@@ -81,7 +81,7 @@ function getPets(event) {
 // function to display pets to the right of the map
 function displayPets(pets,shelterId) {
 	// empty current contents of the results and div
-	$("#results").empty();
+	$(".results").empty();
 
 	// step through list of pets and add name and photo to the results div
 	for (var i = 0; i < pets.length; i++) {
@@ -89,43 +89,91 @@ function displayPets(pets,shelterId) {
 		// if a shelter Id is specified, then check to see that it matches the marker's shelter Id
 		if (shelterId === undefined || (shelterId != undefined && pets[i].shelterId.$t === shelterId)) {
 
+			var animalID = pets[i].id.$t;
+
 			var animalDiv = $("<div class ='animalDiv'>");
-			// var animalModalDiv = $("<div class ='animalModalDiv'>");
 
 			var animalName = pets[i].name.$t;
 			var animalNameDiv = $("<h2>").text(animalName);
 			animalDiv.append(animalNameDiv);
-			// animalModalDiv.append(animalNameDiv);
 
 			var animalImageURL = '';
 			var animalImage = '';
 
 			if ("photos" in pets[i].media && typeof pets[i].media.photos.photo[2].$t != "undefined") {
 				animalImageURL = pets[i].media.photos.photo[2].$t;
-				animalImage = $("<img class='animal'>").attr("src", animalImageURL);
+				animalImage = $("<img class='animal'>").attr({
+					src: animalImageURL,
+					id: animalID,
+				});
 			} else {
 				animalImage = $("<img class='animal'>").attr("src", "https://writeandrescue.files.wordpress.com/2014/06/oops-cat1.jpg?w=620");
 			}
 
 			animalDiv.append(animalImage);
-			// animalModalDiv.append(animalImage);
-
-			var animalID = pets[i].id.$t;
+			
 			var favoriteButton = $("<button class='addFavorite' value='" + animalID + "'>").text("Favorite");
 			animalDiv.append(favoriteButton);
-			// animalModalDiv.append(favoriteButton);
 
 			$(".results").append(animalDiv);
-			// $("#animalModals").append(animalModalDiv);
-
-			// adds modals
 			
-
-
-
 		} // end if
 	}
+
+	// $("#modalContainer").children().addClass("modal");
 };
+
+function populateModal() {
+	var animalID = this.id;
+
+	var queryURL = "https://api.petfinder.com/pet.get";
+	
+	$.ajax({
+		url: queryURL,
+		jsonp: "callback",
+		dataType: "jsonp",
+		data: {
+			key: PetFinderAPIKey,
+			id: animalID,
+			output: "basic",
+			format: "json",
+		},
+		success: function(petResponse) {
+			console.log(petResponse);
+			var pet = petResponse.petfinder.pet;
+			var favoriteName = pet.name.$t;
+			var favoriteShelterID = pet.shelterId.$t;
+			var favoritePhoto = pet.media.photos.photo[2].$t;
+
+			var animalDiv = $("<div class ='animalDiv'>");
+
+			var animalName = pet.name.$t;
+			var animalNameDiv = $("<h2>").text(animalName);
+			animalDiv.append(animalNameDiv);
+
+			var animalImageURL = '';
+			var animalImage = '';
+
+			if ("photos" in pet.media && typeof pet.media.photos.photo[2].$t != "undefined") {
+				animalImageURL = pet.media.photos.photo[2].$t;
+				animalImage = $("<img class='animal'>").attr({
+					src: animalImageURL,
+					id: animalID,
+				});
+			} else {
+				animalImage = $("<img class='animal'>").attr("src", "https://writeandrescue.files.wordpress.com/2014/06/oops-cat1.jpg?w=620");
+			}
+
+			animalDiv.append(animalImage);
+			
+			var favoriteButton = $("<button class='addFavorite' value='" + animalID + "'>").text("Favorite");
+			animalDiv.append(favoriteButton);
+
+			$(".modal-content").append(animalDiv);
+
+		}
+	})
+}
 
 function showModal() {
 	$("#modalContainer").css("display","block");
