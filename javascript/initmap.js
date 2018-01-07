@@ -1,7 +1,5 @@
 function initMap() {
 		
-	// $("#zipSubmit").on("click",function(event) {
-
 		// initial center for the map
 		var USAcenter = {lat: 39.8283, lng: -98.5795};
 
@@ -18,6 +16,8 @@ function initMap() {
 		});
 
 		geocodeZip(currentZip,geocoder,map);
-	// });
 
 }
+
+
+function 
