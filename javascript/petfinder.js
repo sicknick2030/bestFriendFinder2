@@ -94,6 +94,11 @@ function displayPets(pets,shelterId) {
 
 			var animalDiv = $("<div class ='animalDiv'>");
 
+			var animalID = pets[i].id.$t;
+			var favoriteButton = $("<button class='addFavorite' value='" + animalID + "'>").text("Add to favorites:").html("&#9734");
+			animalDiv.append(favoriteButton);
+
+
 			var animalName = pets[i].name.$t;
 			var animalNameDiv = $("<h2>").text(animalName);
 			animalDiv.append(animalNameDiv);
@@ -113,8 +118,13 @@ function displayPets(pets,shelterId) {
 
 			animalDiv.append(animalImage);
 			
-			var favoriteButton = $("<button class='addFavorite' value='" + animalID + "'>").text("Favorite");
-			animalDiv.append(favoriteButton);
+				var breed = pets[i].breeds.breed.$t;
+				var breedDiv = $("<div class='breed' value='" + breed + "'>").text(breed);
+				animalDiv.append(breedDiv);
+
+				var idAge = pets[i].age.$t;
+				var ageDiv = $("<div class='age' value='" + idAge + "'>").text(idAge);
+				animalDiv.append(ageDiv);
 
 			$(".results").append(animalDiv);
 			
@@ -125,6 +135,8 @@ function displayPets(pets,shelterId) {
 };
 
 function populateModal() {
+	$(".modal-content").empty();
+	$(".modal-content").html('<span class="close">&times;</span>');
 	var animalID = this.id;
 	console.log(this);
 	console.log(animalID, "animalID");
@@ -146,9 +158,15 @@ function populateModal() {
 			var pet = petResponse.petfinder.pet;
 			var favoriteName = pet.name.$t;
 			var favoriteShelterID = pet.shelterId.$t;
-			var favoritePhoto = pet.media.photos.photo[2].$t;
+			var favoritePhoto = '';
+			if ("photos" in pet.media && typeof pet.media.photos.photo[2].$t != "undefined") {
+				favoritePhoto = pet.media.photos.photo[2].$t;
+			} else {
+				favoritePhoto = "https://writeandrescue.files.wordpress.com/2014/06/oops-cat1.jpg?w=620";
+			}
+			var description = pet.description.$t;
 
-			var animalDiv = $("<div class ='animalDiv'>");
+			var animalDiv = $("<div class ='modalAnimalDiv'>");
 
 			var animalName = pet.name.$t;
 			var animalNameDiv = $("<h2>").text(animalName);
@@ -159,18 +177,18 @@ function populateModal() {
 
 			if ("photos" in pet.media && typeof pet.media.photos.photo[2].$t != "undefined") {
 				animalImageURL = pet.media.photos.photo[2].$t;
-				animalImage = $("<img class='animal'>").attr({
+				animalImage = $("<img class='modalAnimal'>").attr({
 					src: animalImageURL,
 					id: animalID,
 				});
 			} else {
-				animalImage = $("<img class='animal'>").attr("src", "https://writeandrescue.files.wordpress.com/2014/06/oops-cat1.jpg?w=620");
+				animalImage = $("<img class=modalAnimal>").attr("src", "https://writeandrescue.files.wordpress.com/2014/06/oops-cat1.jpg?w=620");
 			}
 
 			var animalURL = "https://www.petfinder.com/petdetail/" + animalID;
 			// var URLButton = $("<button class='goToPetFinder' value='" + animalID + "'>").text("Go to PetFinder");
-			var PFLink = $("<button>").text("Go to PetFinder");
-			PFLink.html("<a href='" + animalURL + "'>Hi</a>");
+			var PFLink = $("<button class=petFinderLink>").text("Go to PetFinder");
+			PFLink.html("<a href='" + animalURL + "'>Go to Pet Finder</a>");
 			// PFLink.html("Go to PetFinder");
 			console.log(animalURL,"animalURL");
 			console.log(PFLink,"PFLink");
@@ -178,8 +196,11 @@ function populateModal() {
 
 			animalDiv.append(animalImage);
 			
-			var favoriteButton = $("<button class='addFavorite' value='" + animalID + "'>").text("Favorite");
+			var favoriteButton = $("<button class='addModalFavorite' value='" + animalID + "'>").text("Add to Favorites");
 			animalDiv.append(favoriteButton);
+
+			var modalDescription = $("<p class='addModalDescription' value='" + description + "'>").text(description);
+			animalDiv.append(modalDescription);
 
 			$(".modal-content").append(animalDiv);
 
