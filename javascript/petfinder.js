@@ -60,7 +60,7 @@ function getPets(event) {
 		},
 		success: function(petApiData) {
 			// empty current shelters Div
-			$("#sheltersNoAddress").empty()l
+			$("#sheltersNoAddress").empty();
 
 			pets = petApiData.petfinder.pets.pet;
 			shelterList = transform(pets);
