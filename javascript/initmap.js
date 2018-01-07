@@ -20,4 +20,9 @@ function initMap() {
 }
 
 
-function 
+function removeMarkers() {
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(null);
+    }
+    markers = [];
+} 

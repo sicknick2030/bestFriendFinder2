@@ -29,7 +29,7 @@ function geocodeAddress(shelter,address,geocoder,map) {
 	      			label: shelter.pets.length.toString(),
 	    		});
 	    		marker["id"] = shelter.shelterId;
-	    		console.log(marker.id);
+	    		markers.push(marker);
 	    		// create google maps URL for navigating to shelter
 	    		var mapsURL = "https://www.google.com/maps/search/?api=1&query=" + address;
 	    		// create link to google maps URL
