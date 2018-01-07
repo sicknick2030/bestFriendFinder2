@@ -56,56 +56,69 @@ function getPets(event) {
 			sex: petGender,
 			output: "basic",
 			format: "json",
-			count: 5,
+			count: 25,
 		},
 		success: function(petApiData) {
-			var pets = petApiData.petfinder.pets.pet;
+			// empty current shelters Div
+			$("#sheltersNoAddress").empty()l
+
+			pets = petApiData.petfinder.pets.pet;
 			shelterList = transform(pets);
 			addShelterInfo(shelterList);
-			console.log("shelter list: ",shelterList);
 
 			console.log("pets", pets);
+			console.log("shelter list: ",shelterList);
 
-			for (var i = 0; i < pets.length; i++) {
-				var animalDiv = $("<div class ='animalDiv'>");
+			displayPets(pets);
+		},
+	});
+};
 
-				var animalName = pets[i].name.$t;
-				var animalNameDiv = $("<h2>").text(animalName);
-				animalDiv.append(animalNameDiv);
+// function to display pets to the right of the map
+function displayPets(pets,shelterId) {
+	// empty current contents of the results and div
+	$("#results").empty();
 
-				var animalImageURL = '';
-				var animalImage = '';
+	// step through list of pets and add name and photo to the results div
+	for (var i = 0; i < pets.length; i++) {
 
-				if ("photos" in pets[i].media && typeof pets[i].media.photos.photo[2].$t != "undefined") {
-					animalImageURL = pets[i].media.photos.photo[2].$t;
-					animalImage = $("<img class='animal'>").attr("src", animalImageURL);
-				} else {
-					animalImage = $("<img class='animal'>").attr("src", "https://writeandrescue.files.wordpress.com/2014/06/oops-cat1.jpg?w=620");
-				}
+		// if a shelter Id is specified, then check to see that it matches the marker's shelter Id
+		if (shelterId === undefined || (shelterId != undefined && pets[i].shelterId.$t === shelterId)) {
 
-				// var animalImageURL = pets[i].media.photos.photo[2].$t;
-				// var animalImage = $("<img class='animal'>").attr("src", animalImageURL);
-				animalDiv.append(animalImage);
+			var animalDiv = $("<div class ='animalDiv'>");
 
-				// var animalDescription = pets[i].description.$t;
-				// var animalDescriptionDiv = $("<p>").text(animalDescription);
-				// animalDiv.append(animalDescriptionDiv);
+			var animalName = pets[i].name.$t;
+			var animalNameDiv = $("<h2>").text(animalName);
+			animalDiv.append(animalNameDiv);
 
-				var animalID = pets[i].id.$t;
-				var favoriteButton = $("<button class='addFavorite' value='" + animalID + "'>").text("Favorite");
-				animalDiv.append(favoriteButton);
+			var animalImageURL = '';
+			var animalImage = '';
 
-				$("#results").append(animalDiv);
-
-				// NEED TO GENERATE A LIST OF SHELTERS
-				// AND THEN PULL THE SHELTER INFO FROM PETFINDER TO GIVE TO THE GOOGLE MAPS API
+			if ("photos" in pets[i].media && typeof pets[i].media.photos.photo[2].$t != "undefined") {
+				animalImageURL = pets[i].media.photos.photo[2].$t;
+				animalImage = $("<img class='animal'>").attr("src", animalImageURL);
+			} else {
+				animalImage = $("<img class='animal'>").attr("src", "https://writeandrescue.files.wordpress.com/2014/06/oops-cat1.jpg?w=620");
 			}
-		}
-	})
-}
 
-$(document).on("click", "#zipSubmit", getPets);
-$(document).on("change",".target",getPets);
+			// var animalImageURL = pets[i].media.photos.photo[2].$t;
+			// var animalImage = $("<img class='animal'>").attr("src", animalImageURL);
+			animalDiv.append(animalImage);
+
+			// var animalDescription = pets[i].description.$t;
+			// var animalDescriptionDiv = $("<p>").text(animalDescription);
+			// animalDiv.append(animalDescriptionDiv);
+
+			var animalID = pets[i].id.$t;
+			var favoriteButton = $("<button class='addFavorite' value='" + animalID + "'>").text("Favorite");
+			animalDiv.append(favoriteButton);
+
+			$("#results").append(animalDiv);
+		} // end if
+	}
+};
+
+
 
 function addFavorite() {
 	var animalID = this.value;
@@ -138,8 +151,6 @@ function addFavorite() {
 		}
 	})
 }
-
-$(document).on("click",".addFavorite",addFavorite);
 
 // this will pull the favorites from firebase and display
 // NEED FRONT END HELP HERE: 

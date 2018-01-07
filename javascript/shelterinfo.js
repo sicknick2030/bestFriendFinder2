@@ -17,7 +17,7 @@ function getShelterInfo(shelterId,shelter) {
 			// pull shelter information object from API response
 			var shelterInfo = response.petfinder.shelter;
 
-			// add shelter information to shelter
+			// add shelter information to shelter object
 			shelter["shelterInfo"] = shelterInfo;
 
 			// if full shelter address exists, then geocode it and add it to map
@@ -27,9 +27,16 @@ function getShelterInfo(shelterId,shelter) {
 								", " + shelterInfo.state.$t + " " + shelterInfo.zip.$t;
 				geocodeAddress(shelter,address,geocoder,map);
 			}
-			else { // otherwise, log the shelter to console
+			else { // otherwise, add the shelter to the sheltersNoAddress div
 				if (shelterInfo != undefined) {
-					console.log(shelterInfo.name.$t);
+					// create the div to hold the shelter info
+					var shelterDiv = $("<div id='shelter'></div>");
+					// build the various components
+					shelterDiv.append($("<div id='sheltername'></div>").text(shelter.shelterInfo.name.$t));
+					shelterDiv.append($("<div id='shelteremail'></div>").text(shelter.shelterInfo.email.$t));
+					shelterDiv.append($("<div id='shelterphone'></div>").text(shelter.shelterInfo.phone.$t));
+					// add the complete div to the sheltersNoAddress div
+					$("#sheltersNoAddress").append(shelterDiv);
 				}
 			}
 		}
