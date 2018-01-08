@@ -420,3 +420,106 @@ img.animal {
     cursor: pointer;
 }
 
+@media screen and (max-width: 968px) {
+    #input {
+            background-image: url(puppy.jpg);
+            /* height: 88%; */
+            width: 100%;
+            height: 100%;
+            background-size: 200%;
+            background-repeat: no-repeat;
+            background-position: left 19% bottom 71%;
+        }
+}
+
+@media screen and (max-width: 768px) {
+        
+        #shelters {
+        width: 90%;
+        height: 49%;
+        display: inline-block;
+    }
+
+        #sheltersNoAddress {
+        width: 93%;
+        height: 32%;
+        float: left;
+        margin: 0% 2% 2%;
+    }
+
+        #resultsDiv {
+        width: 90%;
+        height: 45%;
+        text-align: center;
+    }
+
+        .results {
+        overflow: scroll;
+        width: 93%;
+        height: 81.3%;
+        border: solid;
+        /* float: right; */
+        margin: 2% 12%;
+        padding: 2% 2% 0%;
+        background-color: white;
+    }
+
+        .output {
+        height: 75%;
+        text-align: center;
+    }
+
+        #bestFriend {
+        font-family: 'Aladin', cursive;
+        font-size: 3em;
+        top: 0%;
+        left: 36%;
+        width: 68%;
+        height: 100%;
+        margin: 0% 31%;
+    }
+
+     #zipCode[type="text"] {
+        font-size: 100%;
+    }
+
+        #zipCode {
+        width: 28%;
+        line-height: 2;
+    }
+
+     
+}
+
+@media screen and (max-width: 450px) {
+    
+    #input {
+            background-image: url(puppy.jpg);
+            /* height: 88%; */
+            width: 100%;
+            height: 100%;
+            background-size: 500%;
+            background-repeat: no-repeat;
+            background-position: left 19% bottom 71%;
+        }
+
+        #bestFriend {
+        font-family: 'Aladin', cursive;
+        font-size: 2em;
+        top: 0%;
+        left: 36%;
+        width: 68%;
+        height: 100%;
+        margin: 0% 31%;
+    }
+
+        /*#zipCode[type="text"] {
+        font-size: 100%;
+    }
+
+        #zipCode {
+        width: 28%;
+        line-height: 2;
+    }*/
+}
+
