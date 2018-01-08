@@ -28,5 +28,7 @@ $(document).on("click",".addFavorite",addFavorite);
 
 $(document).on("click",".animal",populateModal);
 
+$(document).on("click",".favDiv",populateModal);
+
 // when modal is closed
 $(document).on("click",".close",closeModal);

@@ -263,6 +263,9 @@ dbFav.on("child_added", function(snapshot) {
 
 	var favDiv = $("<div class ='favDiv'>");
 
+	var favID = snapshot.val().favoriteID;
+	favDiv.attr("id", favID);
+
 	var favName = snapshot.val().favoriteName;
 	var favNameDiv = $("<h2 class='favName'>").text(favName);
 	favDiv.append(favNameDiv);
