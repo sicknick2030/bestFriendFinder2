@@ -50,6 +50,7 @@ body {
     top: 0%;
     left: 36%;
     width: 50%;
+    height: 100%;
     margin: 0% 37%;
 }
 
@@ -358,6 +359,7 @@ img.animal {
     content: '\2605';
     color: #FDE16D;
 }
+
 #footer {
 	height: 6%;
     text-align: center;
