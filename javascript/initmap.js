@@ -26,3 +26,8 @@ function removeMarkers() {
     }
     markers = [];
 } 
+
+$(document).on("click",".favPhoto", function(event) {
+	event.preventDefault();
+	showModal();
+});

@@ -238,12 +238,17 @@ function addFavorite() {
 			var favoriteName = pet.name.$t;
 			var favoriteShelterID = pet.shelterId.$t;
 			var favoritePhoto = pet.media.photos.photo[2].$t;
+			var favoriteAge = pet.age.$t;
+			var favoriteBreed = pet.breeds.breed.$t;
 
 			dbFav.push({
 				favoriteID: animalID,
 				favoriteName: favoriteName,
 				favoriteShelterID: favoriteShelterID,
 				favoritePhoto: favoritePhoto,
+				favoriteBreed: favoriteBreed,
+				favoriteAge: favoriteAge,
+				favoriteBreed: favoriteBreed,
 			});
 		}
 	})
@@ -258,12 +263,20 @@ dbFav.on("child_added", function(snapshot) {
 	var favDiv = $("<div class ='favDiv'>");
 
 	var favName = snapshot.val().favoriteName;
-	var favNameDiv = $("<h2>").text(favName);
+	var favNameDiv = $("<h2 class='favName'>").text(favName);
 	favDiv.append(favNameDiv);
 
-	// var favImageURL = snapshot.val().favoritePhoto;
-	// var favImage = $("<img class='animal'>").attr("src", favImageURL);
-	// favDiv.append(favImage);
+	var favImageURL = snapshot.val().favoritePhoto;
+	var favImage = $("<img class='favAnimal'>").attr("src", favImageURL);
+	favDiv.append(favImage);
+
+	var favBreedURL = snapshot.val().favoriteBreed;
+	var favBreed = $("<p class='favBreed'>").text(favBreedURL);
+	favDiv.append(favBreed);
+
+	var favAgeURL = snapshot.val().favoriteAge;
+	var favAge = $("<p class='favAge'>").text(favAgeURL);
+	favDiv.append(favAge);
 
 	$("#favorites").append(favDiv);
 })

@@ -20,19 +20,19 @@ body {
 
 #whole{
     width: 100%;
-    /* margin: 0% 10%; */
-    height: 90%;
-    background-color: #da9d9d1f;
-    padding: 0% 10%;
+    height: 100%;
+    padding: 1% 6%;
     display: none;
+    background-color: #9bafd340;
 }
 
 #header {
 	height: 5%;
-    /* width: 80%; */
-    /* margin: 0% 10%; */
     text-align: right;
     background-color: #da9d9dab;
+    background-color: #e6c363;
+    background-color: #ff77af;
+    background-color: #104b5fd1;
 }
 
 
@@ -45,10 +45,12 @@ body {
     background-position: left 19% bottom 71%;
 }
 #whiteBox {
-	border-left: solid;
-    border-right: solid;
-    height: 100%;
+    background-image: url(background4/background.png);
     background-color: white;
+    height: 96%;
+    background-color: white;
+    margin: 0%;
+    margin: 2%;
 }
 
 #bestFriend {
@@ -205,8 +207,20 @@ body {
 
 #shelters {
     width: 50%;
-    height: 100%;
+    height: 66%;
     display: inline-block;
+}
+
+#contact{
+    height: 3%;
+    display: inline-block;
+    margin: 2% 12% 0%;
+    font-weight: 500;
+    font-family: helvetica;
+}
+
+h3{
+    text-decoration-line: underline;
 }
 
 #map {
@@ -221,16 +235,23 @@ body {
 
 #sheltersNoAddress{
     width: 93%;
-    height: 45%;
-    border: solid;
-    /* position: absolute; */
+    height: 38%;
     float: left;
-    margin: 2% 2%;
+    margin: 0% 2% 2%;
+}
+
+#shelter {
+    border: 1px solid;
+    margin: 2%;
+    background-color: #c4acac;
+    /* background-color: white; */
+    /* background-color: white; */
+    color: #6a075e;
 }
 
 #resultsDiv {
     width: 50%;
-    height: 100%;
+    height: 56%;
     display: inline-block;
     float: right;
 }
@@ -238,11 +259,12 @@ body {
 .results {
     overflow: scroll;
     width: 93%;
-    height: 97.3%;
+    height: 81.3%;
     border: solid;
     float: right;
     margin: 2% 2%;
     padding: 2% 2% 0%;
+    background-color: white;
 }
 
 .animalDiv {
@@ -252,7 +274,7 @@ body {
     margin: 2%;
     /* height: 49%; */
     border-radius: 6%;
-    background-color: #b792f261;
+    background-color: #9bafd3;
 }
 
 
@@ -297,6 +319,62 @@ img.animal {
     display: inline-block;
 }
 
+#favoriteTag{
+    text-align: center;
+    font-size: 300%;
+    font-weight: bold;
+    font-family: helvetica;
+    color: #dc3a5f;
+}
+
+#favorites{
+    height: 25%;
+    width: 95%;
+    border: solid;
+    overflow: auto;
+    white-space: nowrap;
+    margin: 0% 0% 0% 2%;
+    background: whitesmoke;
+}
+
+.favDiv {
+    width: 25%;
+    border: 1px solid;
+    display: inline-block;
+    text-align: center;
+    padding: 0%;
+    border-radius: 12%;
+    margin: 1%;
+    background-color: #b792f261;
+    display: inline-block;
+}
+
+.favName{
+    font-family: Nexa Bold,arial,helvetica,sans-serif;
+    font-color: purple;
+    font-color: purple;
+    color: purple;
+    font-weight: bold;
+    font-size: 66%;
+    width: 100%;
+    margin: 2%;
+}
+
+.favAnimal {
+    width: 100px;
+    height: 100px;
+    border-radius: 10%;
+}
+
+.favBreed {
+    width: 100%;
+    margin: 2% 0%;
+}
+
+.favAge {
+    width: 100%;
+}
+
 .addFavorite {
     font-size: 120%;
     background-color: transparent;
@@ -315,10 +393,12 @@ img.animal {
     color: #FDE16D;
 }
 #footer {
-	height: 4%;
+	height: 6%;
     text-align: center;
     padding: 1.5%;
     background-color: aqua;
+    background-color: #f886e8;
+    background-color: #104b5fd1;
 }
 
 .modal {

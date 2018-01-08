@@ -18,6 +18,11 @@ $(document).on("click",".animal", function(event) {
 	showModal();
 });
 
+$(document).on("click",".favDiv", function(event) {
+	event.preventDefault();
+	showModal();
+});
+
 // when pet is favorited
 $(document).on("click",".addFavorite",addFavorite);
 
