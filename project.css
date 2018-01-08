@@ -488,6 +488,29 @@ img.animal {
         line-height: 2;
     }
 
+    .favBreed {
+        width: 100%;
+        margin: 2% 0%;
+        font-size: 55%;
+    }
+
+    .favAnimal {
+        width: 50px;
+        height: 50px;
+        border-radius: 10%;
+}
+
+    .favName {
+        font-family: Nexa Bold,arial,helvetica,sans-serif;
+        font-color: purple;
+        font-color: purple;
+        color: purple;
+        font-weight: bold;
+        font-size: 38%;
+        width: 100%;
+        margin: 2%;
+    }
+
      
 }
 
@@ -512,6 +535,8 @@ img.animal {
         height: 100%;
         margin: 0% 31%;
     }
+
+
 
         /*#zipCode[type="text"] {
         font-size: 100%;
