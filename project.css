@@ -27,7 +27,7 @@ body {
 }
 
 #header {
-	height: 5%;
+	height: 6%;
     text-align: right;
     background-color: #da9d9dab;
     background-color: #e6c363;
@@ -453,3 +453,4 @@ img.animal {
     text-decoration: none;
     cursor: pointer;
 }
+
