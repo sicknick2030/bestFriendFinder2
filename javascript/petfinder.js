@@ -85,7 +85,10 @@ function displayPets(pets,shelterId) {
 
 			var animalID = pets[i].id.$t;
 
+			// creates a blank animalDiv for each animal
 			var animalDiv = $("<div class ='animalDiv'>");
+
+			// and then creates various element to go in the div and appends them to the div
 
 			var animalID = pets[i].id.$t;
 			var favoriteButton = $("<button class='addFavorite' value='" + animalID + "'>").text("Add to favorites:").html("&#9734");
@@ -109,7 +112,6 @@ function displayPets(pets,shelterId) {
 				// provides default image in case the petfinder api does not return one
 				animalImage = $("<img class='animal'>").attr("src", "https://writeandrescue.files.wordpress.com/2014/06/oops-cat1.jpg?w=620");
 			}
-
 			animalDiv.append(animalImage);
 			
 			var breed = pets[i].breeds.breed.$t;
@@ -120,20 +122,19 @@ function displayPets(pets,shelterId) {
 			var ageDiv = $("<div class='age' value='" + idAge + "'>").text(idAge);
 			animalDiv.append(ageDiv);
 
+			// resulting animalDiv is then appended ot teh results div
 			$(".results").append(animalDiv);
 			
 		} // end if
 	}
-
-	// $("#modalContainer").children().addClass("modal");
 };
 
+// function for populating the pop-up modal
 function populateModal() {
 	$(".modal-content").empty();
 	$(".modal-content").html('<span class="close">&times;</span>');
+	// function grabs the id of the clicked picture and then recreates an ajaxcall
 	var animalID = this.id;
-	// console.log(this);
-	// console.log(animalID, "animalID");
 
 	var queryURL = "https://api.petfinder.com/pet.get";
 	
@@ -180,12 +181,10 @@ function populateModal() {
 			}
 
 			var animalURL = "https://www.petfinder.com/petdetail/" + animalID;
-			// var URLButton = $("<button class='goToPetFinder' value='" + animalID + "'>").text("Go to PetFinder");
 			var PFLink = $("<button class=petFinderLink>").text("Go to PetFinder");
 			PFLink.html("<a href='" + animalURL + "'>Go to Pet Finder</a>");
-			// PFLink.html("Go to PetFinder");
-			console.log(animalURL,"animalURL");
-			console.log(PFLink,"PFLink");
+			// console.log(animalURL,"animalURL");
+			// console.log(PFLink,"PFLink");
 			animalDiv.append(PFLink);
 
 			animalDiv.append(animalImage);
@@ -210,6 +209,7 @@ function closeModal() {
 	$("#modalContainer").css("display","none");
 }
 
+// function communicates with firebase to log the favorites
 function addFavorite() {
 	var animalID = this.value;
 	console.log(this);
@@ -248,11 +248,9 @@ function addFavorite() {
 	})
 }
 
-// this will pull the favorites from firebase and display
-// NEED FRONT END HELP HERE: 
-
+// pulls all the favorites from firebase and creates favDivs for them
 dbFav.on("child_added", function(snapshot) {
-	// console.log("child_added", snapshot.val());
+	console.log("child_added", snapshot.val());
 
 	var favDiv = $("<div class ='favDiv'>");
 

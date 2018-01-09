@@ -33,8 +33,8 @@ $(document).on("click",".favDiv", function(event) {
 // when pet is favorited
 $(document).on("click",".addFavorite",addFavorite);
 
+// populates modals whenever animal or favDiv are clicked
 $(document).on("click",".animal",populateModal);
-
 $(document).on("click",".favDiv",populateModal);
 
 // when modal is closed
