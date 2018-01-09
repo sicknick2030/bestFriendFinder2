@@ -1,18 +1,3 @@
-// function zipValidation(zipCode) {
-// 	var isValid = /^[0-9]{5}(?:-[0-9]{4})?$/.test(zipCode);
-//     if (isValid)
-//         alert('Valid ZipCode');
-//     else {
-//         alert('Invalid ZipCode');
-//     }
-// }
-
-// https://validatejs.org/
-// function zipValidation() {
-// 	var pattern = /\d{5}(-\d{4})?/;
-// 	validate({}, {zipCode: {format: pattern}});
-// }
-
 // initializes firebase
 var config = {
     apiKey: "AIzaSyBj0VNeS_U8PR-NDxZNYUnfb67Ca76FEzw",
@@ -25,22 +10,29 @@ var config = {
 
 firebase.initializeApp(config);
 var db = firebase.database().ref();
+// sets a shortcut to favorites folder
 var dbFav = firebase.database().ref("/favorites");
 
+// function makes the dropdown searches visible once zipsubmit is clicked
 function showDropdowns () {
 	$("#search").css("display","block");
 	$("#whole").css("display","block");
 	$("#input").css("height","45%");
 }
 
+// wow!
 console.log("wow!");
 
 var PetFinderAPIKey = "156a1b8fa2233c99240e24d804ef4754"; 
 
+// function uses the search terms provided by the zip and the dropdowns to pull 
+// a list of pets from petfinder 
 function getPets(event) {
 	event.preventDefault();
+	// empties current result div
 	$("#results").empty();
 
+	// collects the search inputs
 	var petType = $("#petType").val().trim();
 	var zipCode = $("#zipCode").val().trim();
 	var petAge = $("#petAge").val().trim();
@@ -114,18 +106,19 @@ function displayPets(pets,shelterId) {
 					id: animalID,
 				});
 			} else {
+				// provides default image in case the petfinder api does not return one
 				animalImage = $("<img class='animal'>").attr("src", "https://writeandrescue.files.wordpress.com/2014/06/oops-cat1.jpg?w=620");
 			}
 
 			animalDiv.append(animalImage);
 			
-				var breed = pets[i].breeds.breed.$t;
-				var breedDiv = $("<div class='breed' value='" + breed + "'>").text(breed);
-				animalDiv.append(breedDiv);
+			var breed = pets[i].breeds.breed.$t;
+			var breedDiv = $("<div class='breed' value='" + breed + "'>").text(breed);
+			animalDiv.append(breedDiv);
 
-				var idAge = pets[i].age.$t;
-				var ageDiv = $("<div class='age' value='" + idAge + "'>").text(idAge);
-				animalDiv.append(ageDiv);
+			var idAge = pets[i].age.$t;
+			var ageDiv = $("<div class='age' value='" + idAge + "'>").text(idAge);
+			animalDiv.append(ageDiv);
 
 			$(".results").append(animalDiv);
 			
@@ -139,8 +132,8 @@ function populateModal() {
 	$(".modal-content").empty();
 	$(".modal-content").html('<span class="close">&times;</span>');
 	var animalID = this.id;
-	console.log(this);
-	console.log(animalID, "animalID");
+	// console.log(this);
+	// console.log(animalID, "animalID");
 
 	var queryURL = "https://api.petfinder.com/pet.get";
 	
@@ -155,7 +148,7 @@ function populateModal() {
 			format: "json",
 		},
 		success: function(petResponse) {
-			console.log(petResponse);
+			// console.log(petResponse);
 			var pet = petResponse.petfinder.pet;
 			var favoriteName = pet.name.$t;
 			var favoriteShelterID = pet.shelterId.$t;
@@ -259,7 +252,7 @@ function addFavorite() {
 // NEED FRONT END HELP HERE: 
 
 dbFav.on("child_added", function(snapshot) {
-	console.log("child_added", snapshot.val());
+	// console.log("child_added", snapshot.val());
 
 	var favDiv = $("<div class ='favDiv'>");
 

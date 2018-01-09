@@ -1,9 +1,16 @@
 // when zip code is submitted by user
 $(document).on("click","#zipSubmit",function(event) {
 	event.preventDefault();
-	getPets(event);
-	initMap();
-	showDropdowns(event);
+	$("#messages").empty();
+
+	var validationReturn = zipValidation();
+	if (validationReturn === undefined) {
+		getPets(event);
+		initMap();
+		showDropdowns(event);
+	} else {
+		$("#messages").text("Please enter a valid zip code");
+	}
 });
 
 // when any of the pet search dropdowns are changed

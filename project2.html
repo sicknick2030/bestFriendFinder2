@@ -11,6 +11,7 @@
   <link rel="stylesheet" type="text/css" href="project.css">
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/validate.js/0.12.0/validate.min.js"></script>
 </head>
 <body>
   
@@ -35,6 +36,7 @@
         <div id="locationInput">
           <input class="form-control" id="zipCode" type="text" maxlength="5" placeholder="Zip Code">
           <button id="zipSubmit">Submit</button>
+          <br><div id="messages"></div>
         </div>
       </form>
       
@@ -43,7 +45,7 @@
           
           
           <select id="petType" name="Animal Type" class="target">
-            <option value=""></option>
+            <option value="">Animal Type</option>
             <!-- <option disabled selected>Animal Type</option> -->
             <option value ="cat">Cat</option>
             <option value="dog">Dog</option>
@@ -53,7 +55,7 @@
           
           <select id="petAge" class="target">
              <!-- <option disabled selected>Pet Age</option> -->
-              <option value=""></option>
+              <option value="">Pet Age</option>
               <option value="Baby">Baby</option>
               <option value="Young">Young</option>
               <option value="Adult">Adult</option>
@@ -63,7 +65,7 @@
           
           <select id="petSize" class="target">
            <!-- <option disabled selected>Pet Size</option> -->
-            <option value=""></option>
+            <option value="">Pet Size</option>
             <option value="S">Small</option>
             <option value="M">Medium</option>
             <option value="L">Large</option>
@@ -73,7 +75,7 @@
           
           <select id="petGender" class="target">
             <!-- <option disabled selected>Pet Gender</option> -->
-            <option value=""></option>
+            <option value="">Gender</option>
             <option value="M">Male</option>
             <option value="F">Female</option>
           </select>
@@ -114,6 +116,7 @@
     </div>
 
   <script type="text/javascript" src="javascript/globals.js"></script>
+  <script type="text/javascript" src="javascript/validate.js"></script>
   <script type="text/javascript" src="javascript/initmap.js"></script>
   <script type="text/javascript" src="javascript/geocode.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVB7FDYuY4JjhAQmJNH-6NUEx0ZtcmCCU">
